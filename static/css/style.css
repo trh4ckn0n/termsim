@@ -1,74 +1,23 @@
-/* Styles généraux */
 body {
     font-family: "Courier New", monospace;
     background-color: #000;
     color: #00ff00;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
-/* Effet CRT pour un rendu "écran de hacker" */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        rgba(0, 255, 0, 0.1) 0px,
-        rgba(0, 255, 0, 0.05) 1px,
-        transparent 2px
-    );
-    z-index: 1;
-    pointer-events: none;
-    animation: crt-flicker 0.2s infinite alternate;
-}
-
-/* Effet de scintillement du CRT */
-@keyframes crt-flicker {
-    from { opacity: 0.95; }
-    to { opacity: 1; }
-}
-
-/* Effet de scanline */
-#terminal::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        transparent 50%,
-        rgba(0, 255, 0, 0.1) 50%
-    );
-    background-size: 100% 3px;
-    pointer-events: none;
-    opacity: 0.2;
-}
-
-/* Fenêtre du terminal */
 #terminal {
     width: 100%;
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    position: relative;
-    z-index: 2;
 }
 
-/* Zone d'affichage des commandes */
 #output {
-    font-size: 16px;
-    white-space: pre-wrap;
-    overflow-y: auto;
-    height: calc(100vh - 40px);
+    margin-bottom: 20px;
 }
 
-/* Curseur clignotant */
-#command-input {
+input {
     width: 100%;
     background: none;
     color: #00ff00;
@@ -77,17 +26,4 @@ body::before {
     font-size: 16px;
     caret-color: #00ff00;
     border-top: 1px solid #00ff00;
-    animation: blink-cursor 1s infinite;
 }
-
-@keyframes blink-cursor {
-    50% { border-top-color: transparent; }
-}
-
-/* Effet matrix sur le fond */
-@keyframes matrix {
-    0% { background-position: 0 0; }
-    100% { background-position: -100px 100px; }
-}
-
-
