@@ -52,4 +52,4 @@ def execute_command():
     return jsonify({'response': response_text})
 
 if __name__ == '__main__':
-    app.run(debug=Flask, host="0.0.0.0")
+    app.run(debug=False, host="0.0.0.0")
