@@ -46,6 +46,12 @@ def execute_command():
         response_text = "uid=0(root) gid=0(root) groups=0(root)" if user_state == "root" else "uid=1000(kali) gid=1000(kali) groups=1000(kali),27(sudo)"
     elif user_input.strip() == "ls":
         response_text = "Desktop  Downloads  Documents  Music  Pictures  Videos"
+    elif user_input.strip() == "exit":
+        if user_state == "root":
+            set_user_state("user")  # Réinitialiser l'état à "user" quand `exit` est exécuté
+            response_text = "You have exited the root session. Returning to normal user."
+        else:
+            response_text = "You are not in root mode."
     else:
         # Envoi à OpenAI pour une simulation réaliste
         response = openai.ChatCompletion.create(
