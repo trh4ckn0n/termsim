@@ -39,14 +39,17 @@ def execute_command():
         else:
             response_text = "You are already root."
     else:
-        # Envoyer la commande à GPT-4 pour simulation de la réponse
+        # Envoyer la commande à GPT-4 en utilisant l'API de chat
         response = openai.ChatCompletion.create(
             model="gpt-4",
-            prompt=f"Simulate a Linux Kali terminal. The user is in {user_state} mode. The user inputs the following command: {user_input}",
+            messages=[
+                {"role": "system", "content": "You are a simulated Kali Linux terminal responding as if the user were in a real terminal session."},
+                {"role": "user", "content": f"The user is in {user_state} mode. The user inputs the following command: {user_input}"}
+            ],
             max_tokens=750,
             temperature=0.7
         )
-        response_text = response.choices[0].text.strip()
+        response_text = response['choices'][0]['message']['content'].strip()
 
     # Renvoi de la réponse du terminal simulé
     return jsonify({'response': response_text})
