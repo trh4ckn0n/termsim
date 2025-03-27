@@ -43,7 +43,7 @@ def execute_command():
         response = openai.Completion.create(
             model="gpt-4",
             prompt=f"Simulate a Linux Kali terminal. The user is in {user_state} mode. The user inputs the following command: {user_input}",
-            max_tokens=150,
+            max_tokens=750,
             temperature=0.7
         )
         response_text = response.choices[0].text.strip()
