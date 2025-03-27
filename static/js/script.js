@@ -5,7 +5,10 @@ document.getElementById('command-input').addEventListener('keydown', function (e
         
         // Ajouter la commande à l'écran
         const output = document.getElementById('output');
-        output.innerHTML += `<div><span style="color: #ff0;">$</span> ${command}</div>`;
+        
+        // Afficher le prompt selon l'état (normal ou root)
+        const prompt = (command.includes("pkexec")) ? "root@kali:~#" : "user@kali:~$";
+        output.innerHTML += `<div><span style="color: #ff0;">${prompt}</span> ${command}</div>`;
         
         // Envoyer la commande au serveur Flask pour exécution
         fetch('/execute', {
