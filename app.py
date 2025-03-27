@@ -8,7 +8,7 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
-app.secret_key = "trhacknon-secret-key"  # Nécessaire pour gérer les sessions
+app.secret_key = "TrknTrknTrkn"  # Nécessaire pour gérer les sessions
 
 # Initialisation de l'état de l'utilisateur
 def get_user_state():
@@ -57,7 +57,7 @@ def execute_command():
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You are a simulated Kali Linux terminal, responding exactly like a real shell."},
+                {"role": "system", "content": "You are a simulated Kali Linux terminal, responding exactly like a real shell. the privilege escalation with pkexec show like a real privilege escalation"},
                 {"role": "user", "content": f"The user is currently {user_state}. They entered: {user_input}"}
             ],
             max_tokens=750,
